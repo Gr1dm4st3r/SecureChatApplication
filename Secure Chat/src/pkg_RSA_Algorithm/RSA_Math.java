@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
  */
 package pkg_RSA_Algorithm;
 
@@ -8,22 +8,32 @@ import java.math.BigInteger;
 
 /**
  *
- * @author HOME PC
+ * @author Michael O Brien | T00150213
  */
 public class RSA_Math {
     
     //Used to calculate phi
     public static BigInteger eularsTotientFunction(BigInteger primeone, BigInteger primetwo){
-        
-        return primeone.subtract(BigInteger.ONE);
+        return (primeone.subtract(BigInteger.ONE)).multiply((primetwo.subtract(BigInteger.ONE)));
     }
     
+    /**
+     *
+     * @param primeone
+     * @param primetwo
+     * @return
+     */
     public static BigInteger calculateModulo(BigInteger primeone, BigInteger primetwo){
         return primeone.multiply(primetwo);
     }
     
-    public static BigInteger chooseRandomPrime(){
-        return BigInteger.probablePrime(1000, null);
+    public static BigInteger chooseRandomPrime(Integer randomType){
+        if (randomType==0){
+           return BigInteger.probablePrime(1024, null); 
+        } 
+        else {
+            return BigInteger.ZERO;
+        }
     }
     
     public static Boolean greatestCommonDivisor(BigInteger number1, BigInteger number2){

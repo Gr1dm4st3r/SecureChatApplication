@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
  */
 package pkg_RSA_Algorithm;
 
@@ -8,7 +8,7 @@ import java.math.BigInteger;
 
 /**
  *
- * @author HOME PC
+ * @author Michael O Brien | T00150213
  */
 public class RSA_Main {
 

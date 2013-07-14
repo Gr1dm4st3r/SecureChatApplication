@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
  */
 package pkg_RSA_Algorithm;
 
@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author HOME PC
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({pkg_RSA_Algorithm.RSA_MainTest.class, pkg_RSA_Algorithm.RSA_AlgorithmTest.class, pkg_RSA_Algorithm.RSA_MathTest.class})
+@Suite.SuiteClasses({ pkg_RSA_Algorithm.RSA_AlgorithmTest.class, pkg_RSA_Algorithm.RSA_MathTest.class})
 public class Pkg_RSA_AlgorithmSuite {
 
     @BeforeClass

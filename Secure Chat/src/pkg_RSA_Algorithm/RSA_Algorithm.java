@@ -16,25 +16,37 @@ public class RSA_Algorithm extends RSA_Math {
     private BigInteger encryptionKey;
     private BigInteger modulo;
     private BigInteger phi;
-    private BigInteger prime1;
-    private BigInteger prime2;
+    private BigInteger primeone;
+    private BigInteger primetwo;
     
+    
+    //Contructs and 
     public RSA_Algorithm(){
         decryptionKey = null;
         encryptionKey = null;
         modulo = null;
         phi = null;
-        prime1 = null;
-        prime2 = null;
+        primeone = null;
+        primetwo = null;
+        
     }
     
-    public RSA_Algorithm(BigInteger prime1, BigInteger prime2){
+    public RSA_Algorithm(BigInteger primeone, BigInteger primetwo){
         decryptionKey = null;
         encryptionKey = null;
         modulo = null;
         phi = null;
-        prime1 = this.prime1;
-        prime2 = this.prime2;
+        setPrimeOne(primeone);
+        setPrimeTwo(primetwo);
+    }
+    
+    public RSA_Algorithm(BigInteger encryptionKey, BigInteger decryptionKey, BigInteger modulo){
+        setDecryptionKey(decryptionKey);
+        setEncryptionKey(encryptionKey);
+        modulo = null;
+        phi = null;
+        primeone = null;
+        primetwo = null;
     }
     
     public BigInteger encryptMessage(String plaintext){
@@ -50,8 +62,8 @@ public class RSA_Algorithm extends RSA_Math {
 
     public Boolean generateKeys(){      
         
-        this.setDecryptionKey(BigInteger.ONE);
-        this.setEncryptionKey(BigInteger.ONE);
+        setEncryptionKey(BigInteger.ONE);
+        setDecryptionKey(BigInteger.ONE);
         
         return true;
     }
@@ -68,7 +80,7 @@ public class RSA_Algorithm extends RSA_Math {
     /**
      * @param decryptionKey the decryptionKey to set
      */
-    public void setDecryptionKey(BigInteger decryptionKey) {
+    private void setDecryptionKey(BigInteger decryptionKey) {
         
         if (phi == null){
             this.decryptionKey = decryptionKey;
@@ -94,7 +106,7 @@ public class RSA_Algorithm extends RSA_Math {
     /**
      * @param encryptionKey the encryptionKey to set
      */
-    public void setEncryptionKey(BigInteger encryptionKey) {
+    private void setEncryptionKey(BigInteger encryptionKey) {
         
         if (encryptionKey.isProbablePrime(-1) && greatestCommonDivisor(encryptionKey, phi)){
             this.encryptionKey = encryptionKey;
@@ -133,39 +145,58 @@ public class RSA_Algorithm extends RSA_Math {
     }
 
     /**
-     * @return the prime1
+     * @return the primeone
      */
-    public BigInteger getPrime1() {
-        return prime1;
+    public BigInteger getPrimeOne() {
+        return primeone;
     }
 
     /**
-     * @param prime1 the prime1 to set
+     * @param primeone the primeone to set
      */
-    public void setPrime1(BigInteger prime1) {
-        this.prime1 = prime1;
+    private void setPrimeOne(BigInteger primeone) {
+        if (primeone.isProbablePrime(0)) {
+            this.primeone = primeone;
+        }
+        else {
+            this.primeone = null;
+        }
     }
 
     /**
      * @return the prime2
      */
-    public BigInteger getPrime2() {
-        return prime2;
+    public BigInteger getPrimeTwo() {
+        return primetwo;
     }
 
     /**
      * @param prime2 the prime2 to set
      */
-    public void setPrime2(BigInteger prime2) {
-        this.prime2 = prime2;
-    }    
+    private void setPrimeTwo(BigInteger primetwo) {
+         if (primeone.isProbablePrime(0)) {
+            this.primetwo = primetwo;
+        }
+        else {
+            this.primetwo = null;
+        }
+    } 
+    
+    public void resetKeys(){
+        this.decryptionKey = null;
+        this.encryptionKey = null;
+        this.modulo = null;
+        this.phi = null;
+        this.primeone = null;
+        this.primetwo = null;
+    }
     
     //For Testing and Debugging Purposes
     @Override
     public String toString(){
         return 
-               "Prime 1:"+this.getPrime1()+
-               "Prime 2"+this.getPrime2()+
+               "Prime 1:"+this.getPrimeOne()+
+               "Prime 2"+this.getPrimeTwo()+
                "Modulo:"+this.getModulo()+
                "\nPhi:"+this.getPhi()+
                "Encryption Key:"+this.getEncryptionKey()+
